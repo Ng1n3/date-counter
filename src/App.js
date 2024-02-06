@@ -9,13 +9,9 @@ export default function App() {
   return (
     <div>
       <div>
-        <button onClick={() => setStep((currCount) => currCount - 1)}>
-          -
-        </button>
+        <button onClick={() => setStep((currCount) => currCount - 1)}>-</button>
         <span>step: {step}</span>
-        <button onClick={() => setStep((currCount) => currCount + 1)}>
-          +
-        </button>
+        <button onClick={() => setStep((currCount) => currCount + 1)}>+</button>
       </div>
       <div>
         <button onClick={() => setCount((currCount) => currCount - step)}>
@@ -27,7 +23,16 @@ export default function App() {
         </button>
       </div>
 
-      <p>{date.toDateString()}</p>
+      <p>
+        <span>
+          {count === 0
+            ? "Today is "
+            : count > 0
+            ? `${count} days from today is `
+            : `${Math.abs(count)} days ago was `}
+        </span>
+        {date.toDateString()}
+      </p>
     </div>
   );
 }
