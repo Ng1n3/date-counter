@@ -6,19 +6,32 @@ export default function App() {
   const date = new Date("feb 6 2024");
   date.setDate(date.getDate() + count);
 
+  function handleInputChange(e) {
+    setStep(e.target.value);
+  }
+
   return (
     <div>
       <div>
-        <button onClick={() => setStep((currCount) => currCount - 1)}>-</button>
-        <span>step: {step}</span>
-        <button onClick={() => setStep((currCount) => currCount + 1)}>+</button>
+        <input
+          onChange={handleInputChange}
+          value={step}
+          type="range"
+          min="0"
+          max="10"
+        />
+        <span>{step}</span>
+        {/* <button onClick={() => setStep((currCount) => currCount - 1)}>-</button> */}
+        {/* <button onClick={() => setStep((currCount) => currCount + 1)}>+</button> */}
       </div>
       <div>
         <button onClick={() => setCount((currCount) => currCount - step)}>
           -
         </button>
         <span>Count: {count}</span>
-        <button onClick={() => setCount((currCount) => currCount + step)}>
+        <button
+          onClick={() => setCount((currCount) => currCount + Number(step))}
+        >
           +
         </button>
       </div>
