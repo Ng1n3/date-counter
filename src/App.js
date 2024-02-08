@@ -1,13 +1,18 @@
 import { useState } from "react";
 
 export default function App() {
-  const [count, setCount] = useState(0);
-  const [step, setStep] = useState(0);
+  let [count, setCount] = useState(0);
+  let [step, setStep] = useState(0);
   const date = new Date("feb 6 2024");
   date.setDate(date.getDate() + count);
 
   function handleInputChange(e) {
     setStep(e.target.value);
+  }
+
+  function handleReset() {
+    setStep(0);
+    setCount(0);
   }
 
   return (
@@ -28,7 +33,10 @@ export default function App() {
         <button onClick={() => setCount((currCount) => currCount - step)}>
           -
         </button>
-        <span>Count: {count}</span>
+        <input
+          value={count}
+          onChange={(e) => setCount(Number(e.target.value))}
+        />
         <button
           onClick={() => setCount((currCount) => currCount + Number(step))}
         >
@@ -46,6 +54,10 @@ export default function App() {
         </span>
         {date.toDateString()}
       </p>
+
+      {count !== 0 || step !== 0 ? (
+        <button onClick={handleReset}>Reset</button>
+      ) : null}
     </div>
   );
 }
